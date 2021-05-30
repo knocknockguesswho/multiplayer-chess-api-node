@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2017",
+    "module": "commonjs",
+    "lib": ["es6"],
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "baseUrl": "src",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "Config/*": ["config/*"],
+      "Controllers/*": ["controllers/*"],
+      "Handlers/*": ["handlers/*"],
+      "Middlewares/*": ["middlewares/*"],
+      "Helpers/*": ["helpers/*"],
+      "Models/*": ["models/*"],
+      "Routes/*": ["routes/*"],
+      "Validators/*": ["validators/*"]
+    },
+    "typeRoots": [],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
