@@ -1,4 +1,4 @@
-### REST API for Multiplayer Chess Game with Typescript Express & MongoDB
+### REST API for Multiplayer Chess Game with Typescript Express with MongoDB & Redis
 
 _under development. websocket configs for realtime data are catching up_
 
