@@ -1,33 +1,33 @@
 import { Request, Response } from 'express';
-import * as handler from 'Handlers';
+import { User } from 'Handlers';
 
 export default class UserInfoController {
-  public static async getAll(_, res: Response) {
-    const data = await handler.User.getAll();
+  public static async getAll(_: Request, res: Response) {
+    const data = await User.getAll();
     res.status(data.result.statusCode);
-    return res.send(data.result);
+    res.send(data.result);
   }
 
   public static async getById(req: Request, res: Response) {
-    const data = await handler.User.getById(req.params['id']);
+    const data = await User.getById(req.params['id']);
     res.status(data.result.statusCode);
     return res.send(data.result);
   }
 
   public static async updateById(req: Request, res: Response) {
-    const data = await handler.User.updateById({ id: req.params['id'], data: req.body });
+    const data = await User.updateById({ id: req.params['id'], data: req.body });
     res.status(data.result.statusCode);
     return res.send(data.result);
   }
 
   public static async deactivateById(req: Request, res: Response) {
-    const data = await handler.User.deactivateById(req.params['id']);
+    const data = await User.deactivateById(req.params['id']);
     res.status(data.result.statusCode);
     return res.send(data.result);
   }
 
-  public static async deactivateAll(req: Request, res: Response) {
-    const data = await handler.User.deactivateAll();
+  public static async deactivateAll(_: Request, res: Response) {
+    const data = await User.deactivateAll();
     res.status(data.result.statusCode);
     return res.send(data.result);
   }

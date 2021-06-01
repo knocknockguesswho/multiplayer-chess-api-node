@@ -14,10 +14,10 @@ moduleAlias.addAliases({
 });
 
 import express from 'express';
-import Redis from 'ioredis';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
 import mongoose from 'mongoose';
+import redis from 'redis';
 
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -27,8 +27,6 @@ import { unprotectedRouter } from 'Routes/unprotected-routes';
 (async () => {
   await mongoose.connect(dbConfig.mongoURI, dbConfig.mongoOptions);
   const redisStore = connectRedis(session);
-  const client = new Redis(cacheConfig.redisOptions);
-
   const app = express();
   const port = generalConfig.general.appPort;
 
@@ -40,9 +38,10 @@ import { unprotectedRouter } from 'Routes/unprotected-routes';
   app.use(
     session({
       ...sessionConfig.sessionOptions,
-      store: new redisStore({ client }),
+      store: new redisStore({ client: cacheConfig.client }),
     }),
   );
+
   app.use('/api/v1', unprotectedRouter);
   app.listen(port, () => console.log('app run on port ' + port));
 })();
