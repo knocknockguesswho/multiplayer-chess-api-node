@@ -1,11 +1,11 @@
 import redis, { ClientOpts } from 'redis';
-import { generalConfig } from 'Config';
+import { config } from 'Config';
 import { Client } from 'connect-redis';
 
 export const redisOption: ClientOpts = {
-  port: +generalConfig.redis.port,
-  host: generalConfig.redis.host,
-  password: generalConfig.redis.password,
+  port: +config.redis.port,
+  host: config.redis.host,
+  password: config.redis.password,
   db: 0,
 };
 

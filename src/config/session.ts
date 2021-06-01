@@ -1,14 +1,14 @@
 import { SessionOptions } from 'express-session';
 import { convertMinuteToMS } from 'Helpers/common-helper';
-import { generalConfig } from 'Config';
+import { config } from 'Config';
 const sessionTimeout: number = convertMinuteToMS(30);
 export const sessionOptions: SessionOptions = {
-  secret: generalConfig.session.secret,
-  name: generalConfig.session.name,
+  secret: config.session.secret,
+  name: config.session.name,
   resave: false,
   cookie: {
     maxAge: sessionTimeout,
-    secure: generalConfig.session.secure === 'production',
+    secure: config.session.secure === 'production',
     sameSite: true,
   },
   rolling: true,

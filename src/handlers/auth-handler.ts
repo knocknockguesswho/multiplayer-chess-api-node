@@ -1,7 +1,7 @@
 import ResponseHelper from 'Helpers/response-helper';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { generalConfig, jwtConfig } from 'Config';
+import { config, jwtConfig } from 'Config';
 import { IUserModel, UserModel } from 'Models/user-collection';
 
 export default class AuthHandler {
@@ -10,7 +10,7 @@ export default class AuthHandler {
     const inputData = input;
     const inputPassword: string = inputData['password'];
 
-    const passwordHash = bcrypt.hashSync(inputPassword, generalConfig.general.bcryptSaltRounds);
+    const passwordHash = bcrypt.hashSync(inputPassword, config.general.bcryptSaltRounds);
     inputData['password'] = passwordHash;
     const result: IUserModel = await inputData.save();
     responseResult.setData(result);

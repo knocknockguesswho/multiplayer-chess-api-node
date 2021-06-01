@@ -1,7 +1,7 @@
 import { ConnectOptions } from 'mongoose';
-import { generalConfig } from 'Config';
+import { config } from 'Config';
 
-export const mongoURI = `mongodb://${generalConfig.mongoDB.username}:${encodeURIComponent(generalConfig.mongoDB.password)}@${generalConfig.mongoDB.host}:${generalConfig.mongoDB.port}/${generalConfig.mongoDB.dbName}`;
+export const mongoURI = `mongodb://${config.mongoDB.username}:${encodeURIComponent(config.mongoDB.password)}@${config.mongoDB.host}:${config.mongoDB.port}/${config.mongoDB.dbName}`;
 export const mongoOptions: ConnectOptions = {
   useUnifiedTopology: true,
   useNewUrlParser: true,

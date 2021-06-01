@@ -14,20 +14,26 @@ export default class UserInfoController {
     return res.send(data.result);
   }
 
-  public static async updateById(req: Request, res: Response) {
-    const data = await User.updateById({ id: req.params['id'], data: req.body });
+  public static async updateUserInfo(req: Request, res: Response) {
+    const data = await User.updateUserInfo({ id: req.session['userId'], data: req.body });
     res.status(data.result.statusCode);
     return res.send(data.result);
   }
 
-  public static async deactivateById(req: Request, res: Response) {
-    const data = await User.deactivateById(req.params['id']);
+  public static async deactivateAccount(req: Request, res: Response) {
+    const data = await User.deactiveAccount(req.session['userId']);
     res.status(data.result.statusCode);
     return res.send(data.result);
   }
 
   public static async deactivateAll(_: Request, res: Response) {
     const data = await User.deactivateAll();
+    res.status(data.result.statusCode);
+    return res.send(data.result);
+  }
+
+  public static async addFriendById(req: Request, res: Response) {
+    const data = await User.addFriendById({ userId: req.session['userId'], friendId: req.body['friend_id'] });
     res.status(data.result.statusCode);
     return res.send(data.result);
   }

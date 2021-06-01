@@ -16,7 +16,7 @@ export default class AuthController {
     const data = await Auth.signin(signinDetail);
     const token: JWTHelper = new JWTHelper(data.result.data['token']);
     token.decodeToken();
-    req.session['userId'] = token.userId;
+    req.session['userId'] = token.userId; // should be assigned after refresh token
     res.status(data.result.statusCode);
     return res.send(data.result);
   }

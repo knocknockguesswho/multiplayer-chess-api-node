@@ -13,6 +13,7 @@ export enum REQUESTS {
   UPDATE_USER_BY_ID = 'update-user-by-id',
   DEACTIVE_USERS = 'deactive-users',
   DEACTIVE_USER_BY_ID = 'deactive-user-by-id',
+  ADD_FRIEND = 'add_friend',
 }
 
 export const requestObject: RequestObject = {
@@ -23,4 +24,5 @@ export const requestObject: RequestObject = {
   [REQUESTS.UPDATE_USER_BY_ID]: dummyValidation,
   [REQUESTS.DEACTIVE_USERS]: dummyValidation,
   [REQUESTS.DEACTIVE_USER_BY_ID]: dummyValidation,
+  [REQUESTS.ADD_FRIEND]: dummyValidation,
 };

@@ -1,6 +1,6 @@
 import { SignOptions } from 'jsonwebtoken';
-import { generalConfig } from 'Config';
-export const JWT_SECRET_KEY = generalConfig.jwt.secret;
+import { config } from 'Config';
+export const JWT_SECRET_KEY = config.jwt.secret;
 export const jwtOptions: SignOptions = {
-  expiresIn: generalConfig.jwt.expireIn + 'm',
+  expiresIn: config.jwt.expireIn + 'm',
 };

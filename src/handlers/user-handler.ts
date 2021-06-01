@@ -20,14 +20,14 @@ export default class UserHandler {
     return responseResult;
   }
 
-  public static async updateById(input: { id: string; data: ResponseData }) {
+  public static async updateUserInfo(input: { id: string; data: ResponseData }) {
     const responseResult = new ResponseHelper();
     await UserModel.findByIdAndUpdate(input['id'], input.data);
     responseResult.setMessage('Success update user data with id: ' + input['id']);
     return responseResult;
   }
 
-  public static async deactivateById(input: string) {
+  public static async deactiveAccount(input: string) {
     const responseResult = new ResponseHelper();
     await UserModel.deleteOne({ _id: input });
     responseResult.setMessage('Success deactivate user');
@@ -38,6 +38,11 @@ export default class UserHandler {
     const responseResult = new ResponseHelper();
     await UserModel.deleteMany({});
     responseResult.setMessage('Success deactivate all users');
+    return responseResult;
+  }
+
+  public static async addFriendById(input: { userId: string; friendId: string }) {
+    const responseResult = new ResponseHelper();
     return responseResult;
   }
 }

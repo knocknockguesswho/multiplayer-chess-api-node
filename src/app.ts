@@ -22,13 +22,13 @@ import redis from 'redis';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
-import { generalConfig, dbConfig, cacheConfig, sessionConfig } from 'Config';
-import { unprotectedRouter } from 'Routes/unprotected-routes';
+import { config, dbConfig, cacheConfig, sessionConfig } from 'Config';
+import { protectedRouter, unprotectedRouter } from 'Routes';
 (async () => {
   await mongoose.connect(dbConfig.mongoURI, dbConfig.mongoOptions);
   const redisStore = connectRedis(session);
   const app = express();
-  const port = generalConfig.general.appPort;
+  const port = config.general.appPort;
 
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,6 +42,7 @@ import { unprotectedRouter } from 'Routes/unprotected-routes';
     }),
   );
 
+  app.use('/api/v1', protectedRouter);
   app.use('/api/v1', unprotectedRouter);
   app.listen(port, () => console.log('app run on port ' + port));
 })();
