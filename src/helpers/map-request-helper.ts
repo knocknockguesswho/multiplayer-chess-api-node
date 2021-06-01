@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { SignupValidation, SigninValidation } from 'Middlewares';
 
-type RequestReturnValue = (req: Request, res: Response, next: () => Promise<any>) => Promise<any>;
+type RequestReturnValue = (req: Request, res: Response, next: NextFunction) => void;
 type RequestObject = { [args: string]: RequestReturnValue };
-const dummyValidation = (req: Request, res: Response, next: () => Promise<any>) => next();
+const dummyValidation = (_: Request, __: Response, next: NextFunction): void => next();
 
 export enum REQUESTS {
   SIGNUP = 'signup',
