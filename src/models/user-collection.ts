@@ -3,14 +3,14 @@ export interface IUserModel extends Document {
   first_name: string;
   last_name: string;
   username: string;
-  password?: string;
-  avatar?: string;
-  rank_point?: number;
-  friend_list?: Array<string>; // ObjectId
-  game_history?: Array<string>; // chess_notation
+  password: string;
+  avatar: string;
+  rank_point: number;
+  friend_list: Array<string>; // ObjectId
+  game_history: Array<string>; // chess_notation
 }
 
-const USER_COLLECTION_SCHEMA: Schema = new Schema({
+const USER_COLLECTION_SCHEMA = new Schema({
   first_name: {
     type: String,
   },

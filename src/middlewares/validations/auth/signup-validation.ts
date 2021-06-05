@@ -1,11 +1,11 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { signupSchema } from 'Validators/form-validator';
 import { UserModel } from 'Models/user-collection';
 import ResponseHelper from 'Helpers/response-helper';
 
 // DISINI KIRIM NEXT ATAU ERROR.
 export default class SignupValidation {
-  public static async validate(req: Request, res: Response, next: () => Promise<any>) {
+  public static async validate(req: Request, res: Response, next: NextFunction) {
     const responseResult = new ResponseHelper();
     try {
       const { username } = req.body;

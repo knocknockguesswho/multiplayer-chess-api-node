@@ -5,35 +5,29 @@ export default class UserInfoController {
   public static async getAll(_: Request, res: Response) {
     const data = await User.getAll();
     res.status(data.result.statusCode);
-    res.send(data.result);
+    return res.send(data.result);
   }
 
   public static async getById(req: Request, res: Response) {
-    const data = await User.getById(req.params['id']);
+    const data = await User.getById(req);
     res.status(data.result.statusCode);
     return res.send(data.result);
   }
 
   public static async updateUserInfo(req: Request, res: Response) {
-    const data = await User.updateUserInfo({ id: req.session['userId'], data: req.body });
+    const data = await User.updateUserInfo(req);
     res.status(data.result.statusCode);
     return res.send(data.result);
   }
 
   public static async deactivateAccount(req: Request, res: Response) {
-    const data = await User.deactiveAccount(req.session['userId']);
+    const data = await User.deactiveAccount(req);
     res.status(data.result.statusCode);
     return res.send(data.result);
   }
 
   public static async deactivateAll(_: Request, res: Response) {
     const data = await User.deactivateAll();
-    res.status(data.result.statusCode);
-    return res.send(data.result);
-  }
-
-  public static async addFriendById(req: Request, res: Response) {
-    const data = await User.addFriendById({ userId: req.session['userId'], friendId: req.body['friend_id'] });
     res.status(data.result.statusCode);
     return res.send(data.result);
   }

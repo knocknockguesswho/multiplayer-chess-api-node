@@ -8,17 +8,24 @@ const dummyValidation = (_: Request, __: Response, next: NextFunction): void => 
 export enum REQUESTS {
   SIGNUP = 'signup',
   SIGNIN = 'signin',
+  SIGNOUT = 'signout',
   GET_USERS = 'get-users',
   GET_USER_BY_ID = 'get-user-by-id',
   UPDATE_USER_BY_ID = 'update-user-by-id',
   DEACTIVE_USERS = 'deactive-users',
   DEACTIVE_USER_BY_ID = 'deactive-user-by-id',
   ADD_FRIEND = 'add_friend',
+  REFRESH_TOKEN = 'refresh-token',
 }
 
-export const requestObject: RequestObject = {
+export const unprotectedRoutes: RequestObject = {
   [REQUESTS.SIGNUP]: SignupValidation.validate,
   [REQUESTS.SIGNIN]: SigninValidation.validate,
+  [REQUESTS.REFRESH_TOKEN]: dummyValidation,
+};
+
+export const protectedRoutes: RequestObject = {
+  [REQUESTS.SIGNOUT]: dummyValidation,
   [REQUESTS.GET_USERS]: dummyValidation,
   [REQUESTS.GET_USER_BY_ID]: dummyValidation,
   [REQUESTS.UPDATE_USER_BY_ID]: dummyValidation,

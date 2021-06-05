@@ -17,7 +17,6 @@ import express from 'express';
 import session from 'express-session';
 import connectRedis from 'connect-redis';
 import mongoose from 'mongoose';
-import redis from 'redis';
 
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -42,7 +41,7 @@ import { protectedRouter, unprotectedRouter } from 'Routes';
     }),
   );
 
-  app.use('/api/v1', protectedRouter);
-  app.use('/api/v1', unprotectedRouter);
+  app.use('/api/v1', protectedRouter).use(protectedRouter);
+  app.use('/api/v1', unprotectedRouter).use(unprotectedRouter);
   app.listen(port, () => console.log('app run on port ' + port));
 })();

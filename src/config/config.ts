@@ -22,7 +22,9 @@ export const config = {
     name: process.env.SESSION_NAME,
   },
   jwt: {
-    secret: process.env.SESSION_SECRET,
-    expireIn: process.env.TOKEN_TIMEOUT,
+    secret: process.env.JWT_SECRET,
+    refreshSecret: process.env.JWT_REFRESH_SECRET,
+    expiresIn: process.env.TOKEN_TIMEOUT,
+    refreshExpiresIn: process.env.REFRESH_TOKEN_TIMEOUT,
   },
 };
